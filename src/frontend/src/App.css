@@ -1,0 +1,165 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Montserrat', 'Open Sans', sans-serif;
+  font-weight: normal;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  width: auto;
+  /*background: #3a3e4f;*/
+  background: #2c3c48;
+  position: relative;
+}
+
+.sidebar .inner {
+  width: 20vw;
+  height: 100vh;
+  overflow: hidden;
+  transition: width 0.6s;
+}
+
+.sidebar.hidden .inner {
+  width: 0px;
+}
+
+.sidebar .hide {
+  position: absolute;
+  right: -30px;
+  top: calc(50vh - 15px);
+  width: 30px;
+  height: 30px;
+  line-height: 35px;
+  text-align: center;
+  color: #fff;
+  background: #999;
+  cursor: pointer;
+}
+
+.sidebar .header {
+  height: 8vh;
+  width: 20vw;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar .header h1 {
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  font-size: 1.8em;
+  font-weight: 100;
+  text-align: center;
+  margin: 0;
+  line-height: 8vh;
+}
+
+.sidebar .header img {
+  width: 30px;
+  margin-right: 5px;
+}
+
+.sidebar .item {
+  width: 20vw;
+  color: #fff;
+  height: 5vh;
+  font-size: 1em;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sidebar .item a {
+  display: inline-block;
+  width: 100%;
+  color: #fff;
+  text-decoration: none;
+  height: 100%;
+  line-height: 5vh;
+}
+
+.sidebar .item a.active, .sidebar .item a:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.sidebar .item span.oi {
+  width: 10%;
+  display: inline-block;
+  margin-left: 10%;
+}
+
+.sidebar .item span.oi:before {
+  line-height: 1.2;
+}
+
+.sidebar .item span.title {
+  margin-left: 3px;
+  user-select: none;
+}
+
+.page {
+  height: 100vh;
+  flex-grow: 1;
+  padding-left: 30px;
+}
+
+.page h1 {
+  width: calc(100% - 30px);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  color: #232323;
+  text-align: center;
+  margin: 0;
+  border-bottom: 1px solid #232323;
+  padding: 10px 0;
+}
+
+.grid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.grid .row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.dashboard .grid {
+  margin-top: 30px;
+}
+
+.dashboard .column {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  color: #232323;
+}
+
+.dashboard .grid .oi {
+  line-height: 1;
+  font-size: 5em;
+  display: inline-block;
+  width: 30%;
+  text-align: center;
+}
