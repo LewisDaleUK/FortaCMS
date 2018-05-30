@@ -1,0 +1,30 @@
+.dashboard .grid {
+  margin-top: 30px;
+  width: 80%;
+}
+
+.dashboard .row {
+  margin-bottom: 20px;
+}
+
+.dashboard .column {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  color: #232323;
+  margin: 0 15px;
+  width: 45%;
+}
+
+.dashboard .grid .oi {
+  line-height: 1;
+  font-size: 5em;
+  display: inline-block;
+  width: 30%;
+  text-align: center;
+}
+
+.dashboard .grid .content {
+  width: 70%;
+}

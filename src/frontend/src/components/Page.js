@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Dashboard from './Dashboard';
+import '../css/Page.css';
 
 export default class Page extends Component {
   render() {

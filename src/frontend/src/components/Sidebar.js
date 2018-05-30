@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Item from './Item';
 import Logo from '../fortacode-symbol.png';
+import '../css/Sidebar.css';
 
 export default class Sidebar extends Component {
   render() {
