@@ -1,0 +1,22 @@
+.editor-container {
+  height: 70vh;
+}
+
+.mde-preview .mde-preview-content h1,
+.mde-preview .mde-preview-content h2,
+.mde-preview .mde-preview-content h3,
+.mde-preview .mde-preview-content h4 {
+  text-align: initial;
+  border-bottom: none;
+}
+
+.editor-container .react-mde {
+  height: 100%;
+}
+
+.react-mde-horizontal-layout .mde-content .mde-text {
+  min-width: 60%;
+}
+.react-mde-horizontal-layout .mde-content .mde-preview {
+  min-width: 40%;
+}

@@ -14,8 +14,8 @@ export default class Sidebar extends Component {
             <img src={Logo} alt="FortaCode logo" />
             <h1>FortaCMS</h1>
           </div>
-          <Item icon="dashboard" title="dashboard" url="/dashboard">Dashboard</Item>
-          <Item icon="document" title="pages" url="/pages">Pages</Item>
+          <Item icon="dashboard" title="dashboard" url="/" exact={true}>Dashboard</Item>
+          <Item icon="document" title="pages" url="/page">Pages</Item>
           <Item icon="compass" title="navigation" url="/navigation">Navigation</Item>
           <Item icon="pencil" title="blog" url="/blog">Blog</Item>
           <Item icon="graph" title="stats" url="/stats">Stats</Item>

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Dashboard from './Dashboard';
-import '../css/Page.css';
+import Pages from './Pages';
+import '../css/View.css';
 
-export default class Page extends Component {
+export default class View extends Component {
   render() {
     return (
       <div className="page">
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/pages" component={() => (<h1>Pages</h1>)} />
+        <Route exact path="/" component={Dashboard} />
+        <Route path="/page" component={Pages} />
         <Route path="/navigation" component={() => (<h1>Navigation</h1>)} />
         <Route path="/blog" component={() => (<h1>Blog</h1>)} />
         <Route path="/stats" component={() => (<h1>Stats</h1>)} />

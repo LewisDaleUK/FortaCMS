@@ -16,7 +16,7 @@ class Dashboard extends Component {
 
         <Grid>
           <Row>
-            <Column onClick={() => redirect('/pages')}>
+            <Column onClick={() => redirect('/page')}>
               <span className="oi" data-glyph="document" title="Pages"></span>
               <div className="content">
                 <h2>Add some pages</h2>

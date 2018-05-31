@@ -1,0 +1,20 @@
+.pageform {
+  padding: 20px 0;
+}
+
+.pageform div.title {
+  width: 100%;
+  height: 5vh;
+  margin: 10px 0;
+}
+
+.pageform input {
+  height: 100%;
+  width: 100%;
+  font-family: 'Montserrat', 'Open Sans', sans-serif;
+}
+
+.pageform div.title input {
+  font-size: 1.3em;
+  padding: 0 10px;
+}
