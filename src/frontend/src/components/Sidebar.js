@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Item from './Item';
+import SidebarItem from './SidebarItem';
 import Logo from '../fortacode-symbol.png';
 import '../css/Sidebar.css';
 
@@ -14,12 +14,12 @@ export default class Sidebar extends Component {
             <img src={Logo} alt="FortaCode logo" />
             <h1>FortaCMS</h1>
           </div>
-          <Item icon="dashboard" title="dashboard" url="/" exact={true}>Dashboard</Item>
-          <Item icon="document" title="pages" url="/page">Pages</Item>
-          <Item icon="compass" title="navigation" url="/navigation">Navigation</Item>
-          <Item icon="pencil" title="blog" url="/blog">Blog</Item>
-          <Item icon="graph" title="stats" url="/stats">Stats</Item>
-          <Item icon="wrench" title="settings" url="/settings">Settings</Item>
+          <SidebarItem icon="dashboard" title="dashboard" url="/" exact={true}>Dashboard</SidebarItem>
+          <SidebarItem icon="document" title="pages" url="/page">Pages</SidebarItem>
+          <SidebarItem icon="compass" title="navigation" url="/navigation">Navigation</SidebarItem>
+          <SidebarItem icon="pencil" title="blog" url="/blog">Blog</SidebarItem>
+          <SidebarItem icon="graph" title="stats" url="/stats">Stats</SidebarItem>
+          <SidebarItem icon="wrench" title="settings" url="/settings">Settings</SidebarItem>
 
           <div className="hide" onClick={onVisibleChange}>
             { visible ?

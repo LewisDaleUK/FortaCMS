@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 
-export default class Item extends Component {
+export default class SidebarItem extends Component {
   state = {
     active: false,
   };

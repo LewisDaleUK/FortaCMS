@@ -16,7 +16,10 @@
   cursor: pointer;
   color: #232323;
   border-bottom: 1px solid #232323;
-  padding: 10px 5px;
+}
+
+.pagelist .button {
+  margin-top: 30px;
 }
 
 .pagelist .item:hover {
@@ -29,10 +32,11 @@
   color: #232323;
   width: 100%;
   text-decoration: none;
+  padding: 10px 5px;
 }
 
 .pagelist .item span, .pagelist .item time {
-  width: 10%;
+  width: 15%;
   display: inline-block;
 }
 
@@ -41,7 +45,7 @@
   font-family: 'Montserrat', 'Open Sans', sans-serif;
   font-size: 1.8em;
   line-height: 1em;
-  width: 25%;
+  width: 35%;
 }
 
 .pagelist .item span.oi {

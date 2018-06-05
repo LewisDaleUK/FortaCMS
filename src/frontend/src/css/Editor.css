@@ -12,6 +12,7 @@
 
 .editor-container .react-mde {
   height: 100%;
+  border-radius: 0px;
 }
 
 .react-mde-horizontal-layout .mde-content .mde-text {

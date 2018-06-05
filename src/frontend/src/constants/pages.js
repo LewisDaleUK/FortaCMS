@@ -8,6 +8,10 @@ const pageItems = [
     'author': 'Lewis Dale',
     'path': '/contact',
     'content': loremIpsum(),
+    'meta': {
+      'title': 'Contact Us',
+      'description': loremIpsum()
+    },
   },
   {
     'id': 2,

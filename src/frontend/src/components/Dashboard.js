@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import Grid from './Grid';
-import Row from './Row';
-import Column from './Column';
+import { Grid, Row, Column } from './GridLayout';
 import '../css/Dashboard.css';
 
 class Dashboard extends Component {

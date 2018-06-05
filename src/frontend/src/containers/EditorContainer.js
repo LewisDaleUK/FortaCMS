@@ -12,13 +12,17 @@ interface AppState {
 }
 
 export default class App extends Component<{}, AppState> {
-  converter: Showdown.Converter;
+  converter = Showdown.Converter;
 
   constructor(props) {
     super(props);
+
     this.state = {
-      mdeState: null,
+      mdeState: {
+        markdown: (props.value || "*Hello World*")
+      },
     };
+
     this.converter = new Showdown.Converter({tables: true, simplifiedAutoLink: true});
   }
 

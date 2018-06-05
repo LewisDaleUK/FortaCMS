@@ -6,6 +6,7 @@
     "draft-js": "^0.10.5",
     "lorem-ipsum": "^1.0.4",
     "react": "^16.4.0",
+    "react-contenteditable": "^2.1.0",
     "react-dom": "^16.4.0",
     "react-mde": "^5.5.1",
     "react-router": "^4.2.0",
