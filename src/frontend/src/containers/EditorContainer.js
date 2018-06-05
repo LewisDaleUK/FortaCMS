@@ -28,6 +28,7 @@ export default class App extends Component<{}, AppState> {
 
   handleValueChange = (mdeState: ReactMdeTypes.MdeState) => {
     this.setState({mdeState});
+    this.props.onChange(mdeState.markdown);
   }
 
   render() {
