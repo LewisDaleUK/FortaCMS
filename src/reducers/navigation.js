@@ -1,6 +1,7 @@
 import { ADD, UPDATE, DELETE } from '../actions/NavigationActions';
+import navigationItems from '../constants/navigation';
 
-const navigation = (state = [], action) => {
+const navigation = (state = navigationItems, action) => {
   let index;
   let newState;
 

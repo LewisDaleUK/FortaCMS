@@ -15,6 +15,7 @@ export default class View extends Component {
         <Route path="/navigation" component={Navigation} />
         <Route path="/blog" component={Blog} />
         <Route path="/stats" component={() => (<h1>Stats</h1>)} />
+        <Route path="/users" component={() => (<h1>Users</h1>)} />
         <Route path="/settings" component={() => (<h1>Settings</h1>)} />
       </div>
     );
