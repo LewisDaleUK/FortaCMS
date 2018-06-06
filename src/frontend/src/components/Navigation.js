@@ -1,83 +1,44 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import NavigationItem from './NavigationItem';
+import { addNavigation, updateNavigation, deleteNavigation } from '../actions/NavigationActions';
 import '../css/Navigation.css';
 
-let navigationItems = [
-  {
-    'id': 1,
-    'path': '/',
-    'title': 'Home'
-  },
-  {
-    'id': 2,
-    'path': '/contact',
-    'title': 'Contact'
-  },
-  {
-    'id': 3,
-    'path': '/products',
-    'title': 'Products'
-  },
-  {
-    'id': 4,
-    'path': '/blog',
-    'title': 'Blog',
-  },
-];
+const Navigation = ({ items, addRow, updateRow, deleteRow }) => {
+  const lastId = Math.max(Math.max(...items.map(i => parseInt(i.id, 10))), 0);
 
-export default class Navigation extends Component {
-  state = {
-    items: navigationItems,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.addRow = this.addRow.bind(this);
-    this.deleteRow = this.deleteRow.bind(this);
-  }
-
-  addRow() {
-    let items = this.state.items;
-    items.push({
-      'id': items[items.length - 1].id + 1,
-      'path': '/',
-      'title': 'Untitled'
-    });
-
-    this.setState({ items });
-  }
-
-  deleteRow(id) {
-    if(window.confirm('Are you sure you want to delete this item? This action cannot be undone')) {
-      let items = this.state.items;
-      let index = items.findIndex(e => e.id === id);
-      items.splice(index, 1);
-      this.setState({ items });
-    }
-  }
-
-  render() {
-    return (
-      <div className="navigation">
-        <h1>Navigation</h1>
-        <div className="items">
-          {
-            this.state.items.map((n,i) => (
-              <NavigationItem
-                key={`navigation-${n.id}`}
-                title={n.title}
-                path={n.path}
-                id={n.id}
-                onDelete={this.deleteRow}
-              />
-            ))
-          }
-        </div>
-        <div className="button" onClick={this.addRow}>
-          <a>Add Row</a>
-        </div>
+  return (
+    <div className="navigation">
+      <h1>Navigation</h1>
+      <div className="items">
+        {
+          items.map((n,i) => (
+            <NavigationItem
+              key={`navigation-${n.id}`}
+              title={n.title}
+              path={n.path}
+              id={n.id}
+              onDelete={deleteRow}
+              onUpdate={updateRow}
+            />
+          ))
+        }
       </div>
-    );
-  }
+      <div className="button" onClick={() => addRow({ path: '/untitled', title: 'Untitled', id: lastId + 1 })}>
+        <a>Add Row</a>
+      </div>
+    </div>
+  );
 }
+
+const mapStateToProps = state => ({
+  items: state.navigation,
+});
+
+const dispatchToProps = dispatch => ({
+  addRow: nav => dispatch(addNavigation(nav)),
+  updateRow: nav => dispatch(updateNavigation(nav)),
+  deleteRow: nav => dispatch(deleteNavigation(nav)),
+});
+
+export default connect(mapStateToProps, dispatchToProps)(Navigation);

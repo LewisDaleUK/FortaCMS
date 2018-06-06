@@ -1,24 +1,17 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-import '../css/Pages.css';
-import PageList from './PageList';
-import PageEdit from './PageEdit';
-import blogItems from '../constants/blogs';
+import { connect } from 'react-redux';
+import CmView from './CmView';
+import { addBlog, updateBlog } from '../actions/BlogActions';
 
-export default class Blog extends Component {
-  render() {
-    const { match } = this.props;
-    const baseURL = match.path + (match.path.endsWith('/') ? '' : '/');
-    const lastId = Math.max(...blogItems.map(i => parseInt(i.id, 10)));
+const mapStateToProps = state => ({
+  items: state.blogs,
+  title: 'Blogs',
+  keyPrefix: 'blog',
+});
 
-    return (
-      <div className="pages">
-        <h1>Blog</h1>
-        <Route exact path={baseURL} component={() => (<PageList pages={blogItems} baseURL={baseURL} />)} />
-        <Route path={`${baseURL}edit/:id`} component={PageEdit} />
-        <Route path={`${baseURL}create`} component={props => (<PageEdit id={lastId+1} match={props.match} history={props.history} />)} />
-      </div>
-    );
-  }
-}
+const dispatchToProps = dispatch => ({
+  onAdd: blog => dispatch(addBlog(blog)),
+  onUpdate: blog => dispatch(updateBlog(blog)),
+});
+
+export default connect(mapStateToProps, dispatchToProps)(CmView);
 

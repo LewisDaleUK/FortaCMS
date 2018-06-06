@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import EditorContainer from '../containers/EditorContainer';
 import HideableDiv from './HideableDiv';
-import pageList from '../constants/pages';
 import '../css/Loader.css';
 import '../css/Button.css';
 import '../css/PageEdit.css';
@@ -19,13 +18,14 @@ export default class PageEdit extends Component {
     loading: true,
     title: null,
     content: null,
+    page: null
   };
 
   // Temporary load function
   async load(id) {
     id = parseInt(id, 10);
     new Promise(async resolve => {
-      let result = pageList.find(page => page.id === id);;
+      let result = this.props.items.find(page => page.id === id);;
       await sleep(500);
       resolve(result);
     }).then(result => {
@@ -47,9 +47,21 @@ export default class PageEdit extends Component {
     this.load(pageId);
   }
 
+  updateValue(key, value) {
+    let page = this.state.page;
+    page[key] = value;
+    this.setState({ page });
+  }
+
+  updateMetaValue(key, value) {
+    let page = this.state.page;
+    page.meta[key] = value;
+    this.setState({ page });
+  }
+
   render() {
     const { loading, page } = this.state;
-    const { history } = this.props;
+    const { onChange } = this.props;
 
     if(loading) {
       return (
@@ -64,10 +76,15 @@ export default class PageEdit extends Component {
       <form className="pageform">
         <div className="heading">
           <div className="title">
-            <input type="text" name="title" defaultValue={page.title} placeholder="Title" />
+            <input
+              type="text"
+              name="title"
+              defaultValue={page.title}
+              placeholder="Title"
+              onChange={e => this.updateValue('title', e.target.value)} />
           </div>
           <div className="options">
-            <div className="button" onClick={() => history.goBack()}>
+            <div className="button" onClick={() => onChange(this.state.page)}>
               Submit
             </div>
             <div className="dropdown">
@@ -75,12 +92,22 @@ export default class PageEdit extends Component {
             </div>
           </div>
         </div>
-        <EditorContainer value={page.content} />
+        <EditorContainer value={page.content} onChange={v => this.updateValue('content', v)} />
 
         <HideableDiv title="Meta Content">
-          <input type="text" name="metatitle" placeholder="Meta Title" defaultValue={meta.title} />
-          <textarea name="metadesc" placeholder="Meta Description" defaultValue={meta.description}>
-          </textarea>
+          <input
+            type="text"
+            name="metatitle"
+            placeholder="Meta Title"
+            defaultValue={meta.title}
+            onChange={e => this.updateMetaValue('title', e.target.value)}
+          />
+          <textarea
+            name="metadesc"
+            placeholder="Meta Description"
+            defaultValue={meta.description}
+            onChange={e => this.updateMetaValue('description', e.target.value)}
+          />
         </HideableDiv>
 
         <HideableDiv title="Social Media Settings">

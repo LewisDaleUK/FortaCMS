@@ -2,11 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PageItem from './PageItem';
 
-const PageList = ({ pages, baseURL }) => (
+const PageList = ({ pages, baseURL, keyPrefix }) => (
   <div className="pagelist">
     { pages.map(p => (
       <PageItem
-        key={`page-${p.id}`}
+        key={`${keyPrefix}-${p.id}`}
         title={p.title}
         date={p.date}
         author={p.author}
