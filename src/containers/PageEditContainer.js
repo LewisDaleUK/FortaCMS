@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import Loader from '../components/Loader';
 import PageEdit from '../components/PageEdit';
 import '../css/PageEdit.css';
@@ -8,7 +9,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export default class PageEditContainer extends Component {
+class PageEditContainer extends Component {
   state = {
     loading: true,
     page: null,
@@ -42,7 +43,7 @@ export default class PageEditContainer extends Component {
 
   render() {
     const { loading, page } = this.state;
-    const { onChange } = this.props;
+    const { onChange, history, baseURL } = this.props;
 
     if(loading) {
       return (<Loader />);
@@ -51,7 +52,10 @@ export default class PageEditContainer extends Component {
     return (
       <PageEdit
         page={page}
-        onSubmit={() => { onChange(page )}}
+        onSubmit={() => {
+          onChange(page);
+          history.push(baseURL);
+        }}
         onPageUpdate={(k,v) => {
           page[k] = v;
           this.setState({ page });
@@ -81,4 +85,11 @@ PageEditContainer.propTypes = {
    * Function to call to change the stored page object
    */
   onChange: PropTypes.func.isRequired,
+
+  /**
+   * The base URL to redirect to after submission
+   */
+  baseURL: PropTypes.string.isRequired,
 };
+
+export default withRouter(PageEditContainer);

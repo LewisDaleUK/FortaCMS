@@ -15,10 +15,17 @@ const CmView = ({ title, match, onAdd, onUpdate, items, keyPrefix }) => {
       <h1>{ title }</h1>
       <Route exact path={baseURL} component={() => (<PageList pages={items} baseURL={baseURL} keyPrefix={keyPrefix} />)} />
       <Route path={`${baseURL}edit/:id`} component={props => (
-        <PageEditContainer match={props.match} onChange={onUpdate} items={items} />
+        <PageEditContainer match={props.match} onChange={onUpdate} items={items} baseURL={baseURL} />
       )} />
       <Route path={`${baseURL}create`} component={props => (
-        <PageEditContainer id={lastId+1} match={props.match} history={props.history} onChange={onAdd} items={items} />
+        <PageEditContainer
+          id={lastId+1}
+          match={props.match}
+          history={props.history}
+          onChange={onAdd}
+          items={items}
+          baseURL={baseURL}
+        />
       )}
     />
   </div>
