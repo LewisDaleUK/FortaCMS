@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Loader from '../components/Loader';
 import PageEdit from '../components/PageEdit';
 import '../css/PageEdit.css';
@@ -64,3 +65,20 @@ export default class PageEditContainer extends Component {
   }
 }
 
+PageEditContainer.propTypes = {
+  /**
+   * The match object provided by React Router
+   */
+  match: PropTypes.object,
+
+  /**
+   * The ID of the page to edit, if not provided by the URL.
+   * If the ID is in the URL, it will take priority
+   */
+  id: PropTypes.number,
+
+  /**
+   * Function to call to change the stored page object
+   */
+  onChange: PropTypes.func.isRequired,
+};

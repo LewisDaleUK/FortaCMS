@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import '../css/HideableDiv.css';
 
 export default class HideableDiv extends Component {
@@ -26,3 +27,15 @@ export default class HideableDiv extends Component {
     );
   }
 }
+
+HideableDiv.propTypes = {
+  /**
+   * Child(ren) to render within the hideable div
+   */
+  children: PropTypes.node.isRequired,
+
+  /**
+   * The title to render above the div
+   */
+  title: PropTypes.string,
+};
