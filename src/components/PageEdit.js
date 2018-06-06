@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import EditorContainer from '../containers/EditorContainer';
 import HideableDiv from './HideableDiv';
 import '../css/Button.css';
@@ -57,6 +58,30 @@ const PageEdit = ({ page, onSubmit, onPageUpdate, onMetaUpdate }) => {
       </HideableDiv>
     </form>
   );
+};
+
+PageEdit.propTypes = {
+  /**
+   * The page item to edit
+   */
+  page: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }).isRequired,
+
+  /**
+   * The function to call when the submit button is pressed
+   */
+  onSubmit: PropTypes.func.isRequired,
+
+  /**
+   * The function to call to update a value of Page
+   */
+  onPageUpdate: PropTypes.func.isRequired,
+
+  /**
+   * The function to call to update a value of Page.meta
+   */
+  onMetaUpdate: PropTypes.func.isRequired,
 };
 
 export default PageEdit;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Editable from './Editable';
 import '../css/NavigationItem.css';
 
@@ -37,3 +38,30 @@ export default class NavigationItem extends Component {
     );
   }
 }
+
+NavigationItem.propTypes = {
+  /**
+   * Function to call to update the navigation object
+   */
+  onUpdate: PropTypes.func.isRequired,
+
+  /**
+   * Function to call to delete the navigation object
+   */
+  onDelete: PropTypes.func.isRequired,
+
+  /**
+   * The ID of the navigation object
+   */
+  id: PropTypes.number.isRequired,
+
+  /**
+   * The title of the navigation item
+   */
+  title: PropTypes.string.isRequired,
+
+  /**
+   * The path of the navigation item
+   */
+  path: PropTypes.string.isRequired,
+};

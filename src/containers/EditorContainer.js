@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactMde, {ReactMdeTypes} from "react-mde";
 import Showdown from "showdown";
 import 'react-mde/lib/styles/css/react-mde-all.css';
@@ -11,22 +12,21 @@ interface AppState {
   mdeState: ReactMdeTypes.MdeState;
 }
 
-export default class App extends Component<{}, AppState> {
-  converter = Showdown.Converter;
+export default class EditorContainer extends Component<{}, AppState> {
+  converter = new Showdown.Converter({tables: true, simplifiedAutoLink: true});
+  state = {
+    mdeState: {
+      markdown: this.props.value,
+    },
+  };
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      mdeState: {
-        markdown: (props.value || "*Hello World*")
-      },
-    };
-
-    this.converter = new Showdown.Converter({tables: true, simplifiedAutoLink: true});
+    this.handleValueChange = this.handleValueChange.bind(this);
   }
 
-  handleValueChange = (mdeState: ReactMdeTypes.MdeState) => {
+  handleValueChange(mdeState: ReactMdeTypes.MdeState) {
     this.setState({mdeState});
     this.props.onChange(mdeState.markdown);
   }
@@ -44,3 +44,21 @@ export default class App extends Component<{}, AppState> {
     );
   }
 }
+
+EditorContainer.propTypes = {
+  /**
+   * The raw markdown to render in the container
+   *
+   * If not provided, will default to Hello World
+   */
+  value: PropTypes.string.isRequired,
+
+  /**
+   * Function to call when the value is changed
+   */
+  onChange: PropTypes.func.isRequired
+};
+
+EditorContainer.defaultProps = {
+  value: "# Hello World",
+};
