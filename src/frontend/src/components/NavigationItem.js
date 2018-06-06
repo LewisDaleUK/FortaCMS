@@ -3,11 +3,6 @@ import Editable from './Editable';
 import '../css/NavigationItem.css';
 
 export default class NavigationItem extends Component {
-  state = {
-    'title': this.props.title,
-    'path': this.props.path
-  };
-
   constructor(props) {
     super(props);
 
@@ -15,27 +10,29 @@ export default class NavigationItem extends Component {
     this.onTitleChange = this.onTitleChange.bind(this);
   }
 
-  onPathChange(v) {
-    if(!v.length || v.charAt(0) !== '/') {
-      v = '/' + v;
+  onPathChange(path) {
+    const { id, title, onUpdate } = this.props;
+
+    if(!path.length || path.charAt(0) !== '/') {
+      path = '/' + path;
     }
 
-    this.setState({ path: v });
+    onUpdate({ id, path, title });
   }
 
-  onTitleChange(v) {
-    this.setState({ title: v });
+  onTitleChange(title) {
+    const { id, path, onUpdate } = this.props;
+    onUpdate({ id, path, title });
   }
 
   render() {
-    const { title, path } = this.state;
-    const { onDelete, id } = this.props;
+    const { onDelete, id, title, path } = this.props;
 
     return (
       <div className="item">
         <Editable name="path" className="path" value={path} onChange={this.onPathChange} />
         <Editable name="title" className="title" value={title} onChange={this.onTitleChange}/>
-        <span className="oi" data-glyph="trash" title="Delete" onClick={() => onDelete(id)}></span>
+        <span className="oi" data-glyph="trash" title="Delete" onClick={() => onDelete({ id, title, path })}></span>
       </div>
     );
   }

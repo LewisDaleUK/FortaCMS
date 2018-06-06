@@ -1,6 +1,7 @@
 import { ADD, UPDATE } from '../actions/BlogActions';
+import blogItems from '../constants/blogs'; 
 
-const blogs = (state = [], action) => {
+const blogs = (state = blogItems, action) => {
   switch(action.type) {
     case ADD:
       if(state.find(x => x.id === action.blog.id)) {

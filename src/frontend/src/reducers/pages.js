@@ -1,10 +1,11 @@
 import { ADD, UPDATE } from '../actions/PageActions';
+import pageItems from '../constants/pages';
 
-const pages = (state = [], action) => {
+const pages = (state = pageItems, action) => {
   switch(action.type) {
     case ADD:
       if(state.find(x => x.id === action.page.id)) {
-        throw new Error(`Blog with ID ${action.page.id} already exists`);
+        throw new Error(`Page with ID ${action.page.id} already exists`);
       }
       return [...state, action.page];
     case UPDATE:

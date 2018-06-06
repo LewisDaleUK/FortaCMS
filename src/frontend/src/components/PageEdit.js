@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import EditorContainer from '../containers/EditorContainer';
 import HideableDiv from './HideableDiv';
-import pageList from '../constants/pages';
 import '../css/Loader.css';
 import '../css/Button.css';
 import '../css/PageEdit.css';
@@ -26,7 +25,7 @@ export default class PageEdit extends Component {
   async load(id) {
     id = parseInt(id, 10);
     new Promise(async resolve => {
-      let result = pageList.find(page => page.id === id);;
+      let result = this.props.items.find(page => page.id === id);;
       await sleep(500);
       resolve(result);
     }).then(result => {
