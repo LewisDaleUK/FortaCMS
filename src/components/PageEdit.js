@@ -4,7 +4,7 @@ import EditorContainer from '../containers/EditorContainer';
 import HideableDiv from './HideableDiv';
 import '../css/Button.css';
 
-const PageEdit = ({ page, onSubmit, onPageUpdate, onMetaUpdate }) => {
+const PageEdit = ({ page, onSubmit, onPageUpdate, onMetaUpdate, getPath }) => {
   const meta = (page.meta || {});
 
   return (
@@ -14,9 +14,17 @@ const PageEdit = ({ page, onSubmit, onPageUpdate, onMetaUpdate }) => {
           <input
             type="text"
             name="title"
-            defaultValue={page.title}
+            value={page.title}
             placeholder="Title"
             onChange={e => onPageUpdate('title', e.target.value)} />
+        </div>
+        <div className="url">
+          <input
+            type="text"
+            name="path"
+            value={page.path}
+            placeholder="Title"
+            onChange={e => onPageUpdate('path', e.target.value)} />
         </div>
         <div className="options">
           <div className="button" onClick={onSubmit}>

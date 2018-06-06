@@ -4,8 +4,10 @@ import { addPage, updatePage } from '../actions/PageActions';
 
 const mapStateToProps = state => ({
   items: state.pages,
+  author: state.user,
   title: 'Pages',
-  keyPrefix: 'page'
+  keyPrefix: 'page',
+  getPath: page => '/' + page.path.replace(/^\/+/g, ''),
 });
 
 const dispatchToProps = dispatch => ({

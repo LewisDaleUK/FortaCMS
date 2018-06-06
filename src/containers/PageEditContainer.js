@@ -15,6 +15,12 @@ class PageEditContainer extends Component {
     page: null,
   }
 
+  constructor(props) {
+    super(props);
+
+    this.saveItem = this.saveItem.bind(this);
+  }
+
   // Temporary load function
   async load(id) {
     id = parseInt(id, 10);
@@ -35,6 +41,28 @@ class PageEditContainer extends Component {
     });
   }
 
+  getTimestamp() {
+    const { page } = this.state;
+    const locale = "en-gb";
+    const now = new Date();
+    const nowString = now.toLocaleDateString(locale, {day: '2-digit', month: 'long', year: 'numeric' });
+
+    return (page.date || nowString);
+  }
+
+  saveItem() {
+    const { onChange, history, baseURL, author } = this.props;
+    const { page } = this.state;
+    const timeStamp = this.getTimestamp();
+    const authorString = (page.author || author.name);
+    onChange(Object.assign({}, page, {
+      'date': timeStamp,
+      'author': authorString,
+    }));
+
+    history.push(baseURL);
+  }
+
   componentDidMount() {
     const { match, id } = this.props;
     const pageId = (match.params.id || id);
@@ -43,7 +71,7 @@ class PageEditContainer extends Component {
 
   render() {
     const { loading, page } = this.state;
-    const { onChange, history, baseURL } = this.props;
+    const { getPath } = this.props;
 
     if(loading) {
       return (<Loader />);
@@ -51,11 +79,8 @@ class PageEditContainer extends Component {
 
     return (
       <PageEdit
-        page={page}
-        onSubmit={() => {
-          onChange(page);
-          history.push(baseURL);
-        }}
+        page={Object.assign({}, page, { path: getPath(page) })}
+        onSubmit={this.saveItem}
         onPageUpdate={(k,v) => {
           page[k] = v;
           this.setState({ page });
@@ -64,12 +89,18 @@ class PageEditContainer extends Component {
           page.meta[k] = v;
           this.setState({ page });
         }}
+        getPath={getPath}
       />
     );
   }
 }
 
 PageEditContainer.propTypes = {
+  /**
+   * Object representing the current user
+   */
+  author: PropTypes.object.isRequired,
+
   /**
    * The match object provided by React Router
    */
@@ -90,6 +121,11 @@ PageEditContainer.propTypes = {
    * The base URL to redirect to after submission
    */
   baseURL: PropTypes.string.isRequired,
+
+  /**
+   * Function to call to get the path of the page
+   */
+  getPath: PropTypes.func.isRequired,
 };
 
 export default withRouter(PageEditContainer);

@@ -5,7 +5,7 @@ import '../css/Pages.css';
 import PageList from './PageList';
 import PageEditContainer from '../containers/PageEditContainer';
 
-const CmView = ({ title, match, onAdd, onUpdate, items, keyPrefix }) => {
+const CmView = ({ title, match, onAdd, onUpdate, items, keyPrefix, author, getPath }) => {
   const baseURL = match.path + (match.path.endsWith('/') ? '' : '/');
   let lastId = Math.max(...items.map(i => parseInt(i.id, 10)));
   lastId = Math.max(lastId, 0);
@@ -15,7 +15,14 @@ const CmView = ({ title, match, onAdd, onUpdate, items, keyPrefix }) => {
       <h1>{ title }</h1>
       <Route exact path={baseURL} component={() => (<PageList pages={items} baseURL={baseURL} keyPrefix={keyPrefix} />)} />
       <Route path={`${baseURL}edit/:id`} component={props => (
-        <PageEditContainer match={props.match} onChange={onUpdate} items={items} baseURL={baseURL} />
+        <PageEditContainer
+          match={props.match}
+          onChange={onUpdate}
+          items={items}
+          baseURL={baseURL}
+          author={author}
+          getPath={getPath}
+        />
       )} />
       <Route path={`${baseURL}create`} component={props => (
         <PageEditContainer
@@ -25,6 +32,8 @@ const CmView = ({ title, match, onAdd, onUpdate, items, keyPrefix }) => {
           onChange={onAdd}
           items={items}
           baseURL={baseURL}
+          author={author}
+          getPath={getPath}
         />
       )}
     />
@@ -33,6 +42,11 @@ const CmView = ({ title, match, onAdd, onUpdate, items, keyPrefix }) => {
 };
 
 CmView.propTypes = {
+  /**
+   * Object representing the current user
+   */
+  author: PropTypes.object.isRequired,
+
   /**
    * Page title to display at the top of the page
    */
@@ -57,6 +71,11 @@ CmView.propTypes = {
    * List of items to operate on
    */
   items: PropTypes.array.isRequired,
+
+  /**
+   * Function to call to retrieve the path of the object
+   */
+  getPath: PropTypes.func.isRequired,
 };
 
 export default CmView;
