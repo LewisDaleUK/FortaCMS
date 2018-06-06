@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import '../css/Pages.css';
 import PageList from './PageList';
-import PageEdit from './PageEdit';
+import PageEditContainer from '../containers/PageEditContainer';
 
 const CmView = ({ title, match, onAdd, onUpdate, items, keyPrefix }) => {
   const baseURL = match.path + (match.path.endsWith('/') ? '' : '/');
@@ -15,10 +15,10 @@ const CmView = ({ title, match, onAdd, onUpdate, items, keyPrefix }) => {
       <h1>{ title }</h1>
       <Route exact path={baseURL} component={() => (<PageList pages={items} baseURL={baseURL} keyPrefix={keyPrefix} />)} />
       <Route path={`${baseURL}edit/:id`} component={props => (
-        <PageEdit match={props.match} onChange={onUpdate} items={items} />
+        <PageEditContainer match={props.match} onChange={onUpdate} items={items} />
       )} />
       <Route path={`${baseURL}create`} component={props => (
-        <PageEdit id={lastId+1} match={props.match} history={props.history} onChange={onAdd} items={items} />
+        <PageEditContainer id={lastId+1} match={props.match} history={props.history} onChange={onAdd} items={items} />
       )}
     />
   </div>
