@@ -1,0 +1,9 @@
+.stats .grid {
+  padding: 10px 20px;
+}
+
+.stats .grid .column {
+  min-height: 400px;
+  width: 100%;
+  overflow: hidden;
+}
