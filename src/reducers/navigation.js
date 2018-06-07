@@ -1,4 +1,4 @@
-import { ADD, UPDATE, DELETE } from '../actions/NavigationActions';
+import { ADD, UPDATE, DELETE, REORDER } from '../actions/NavigationActions';
 import navigationItems from '../constants/navigation';
 
 const navigation = (state = navigationItems, action) => {
@@ -21,6 +21,12 @@ const navigation = (state = navigationItems, action) => {
       index = state.findIndex(x => x.id === action.navigation.id);
       newState = [...state];
       newState.splice(index, 1);;
+      return newState;
+    case REORDER:
+      newState = state.slice();
+      const { from, to } = action;
+      const [removed] = newState.splice(from, 1);
+      newState.splice(to, 0, removed);
       return newState;
     default:
       return state;

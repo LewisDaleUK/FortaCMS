@@ -1,5 +1,11 @@
-.navigation .item {
+.navigation .item-wrapper {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navigation .item {
+  width: 97%;
   height: 5vh;
   display: flex;
   justify-content: space-between;
