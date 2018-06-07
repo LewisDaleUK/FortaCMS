@@ -5,7 +5,7 @@ import LineChart from './LineChart';
 import PieChart from './PieChart';
 import '../css/Stats.css';
 
-const Stats = ({ visits, pageShare }) => {
+const Stats = ({ visits, pageShare, timeSpent }) => {
 
   return (
   <div className="stats">
@@ -27,16 +27,13 @@ const Stats = ({ visits, pageShare }) => {
         <Column>
           <PieChart
             data={pageShare.map(i => ({ angle: i.visits, label: i.label }))}
-            showLabels
+            title='Share of Page Views'
           />
         </Column>
         <Column>
-          <LineChart
-            title='Number of visits per day'
-            x={x => x.date.getTime() }
-            y={y => y.visits}
-            data={visits}
-            xType='time'
+          <PieChart
+            data={timeSpent.map(i => ({ angle: i.time, label: i.label}))}
+            title='Time Spent on Each Page'
           />
         </Column>
       </Row>
@@ -48,6 +45,7 @@ const Stats = ({ visits, pageShare }) => {
 const mapStateToProps = ({ stats }) => ({
   visits: stats.visits,
   pageShare: stats.pageShare,
+  timeSpent: stats.timeSpent,
 });
 
 export default connect(mapStateToProps)(Stats);

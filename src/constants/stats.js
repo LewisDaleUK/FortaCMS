@@ -25,12 +25,38 @@ const defaultStats = {
       label: 'Contact',
     },
     {
-      visits: 300,
+      visits: 2200,
       label: 'Blog',
     },
     {
       visits: 800,
       label: 'Products'
+    },
+    {
+      visits: 1200,
+      label: 'Portfolio'
+    }
+  ],
+  timeSpent: [
+    {
+      time: 138,
+      label: 'Home'
+    },
+    {
+      time: 30,
+      label: 'Contact',
+    },
+    {
+      time: 305,
+      label: 'Blog',
+    },
+    {
+      time: 72,
+      label: 'Products'
+    },
+    {
+      time: 251,
+      label: 'Portfolio'
     }
   ],
 };

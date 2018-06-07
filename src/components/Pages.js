@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
   author: state.user,
   title: 'Pages',
   keyPrefix: 'page',
-  getPath: page => '/' + page.path.replace(/^\/+/g, ''),
+  getPath: page => '/' + (page.path || '').replace(/^\/+/g, ''),
 });
 
 const dispatchToProps = dispatch => ({
