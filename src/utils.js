@@ -5,3 +5,5 @@ export const slugify = (text = '') => '/' + text.toString().toLowerCase() /* esl
   .substring(0,25)                // Limit line length
   .replace(/^-+/, '')             // Trim - from start of text
   .replace(/-+$/, '');            // Trim - from end of text
+
+export const randomInt = (max, min = 0) => Math.floor(Math.random() * (max - min +1)) + min;
