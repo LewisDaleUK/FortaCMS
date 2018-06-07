@@ -10,4 +10,3 @@ export const updatePage = page => ({
   type: UPDATE,
   page
 });
-

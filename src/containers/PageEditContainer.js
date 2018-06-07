@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
+import deepmerge from 'deepmerge';
 import Loader from '../components/Loader';
 import PageEdit from '../components/PageEdit';
 import '../css/PageEdit.css';
@@ -51,13 +52,14 @@ class PageEditContainer extends Component {
   }
 
   saveItem() {
-    const { onChange, history, baseURL, author } = this.props;
+    const { onChange, history, baseURL, author, getPath } = this.props;
     const { page } = this.state;
     const timeStamp = this.getTimestamp();
     const authorString = (page.author || author.name);
     onChange(Object.assign({}, page, {
       'date': timeStamp,
       'author': authorString,
+      'path': getPath(page),
     }));
 
     history.push(baseURL);
@@ -81,13 +83,10 @@ class PageEditContainer extends Component {
       <PageEdit
         page={Object.assign({}, page, { path: getPath(page) })}
         onSubmit={this.saveItem}
-        onPageUpdate={(k,v) => {
-          page[k] = v;
-          this.setState({ page });
-        }}
+        onPageUpdate={(k,v) => this.setState({ page: Object.assign({}, page, {[k]: v})})}
         onMetaUpdate={(k,v) => {
-          page.meta[k] = v;
-          this.setState({ page });
+          const params = {meta: { [k]: v }}
+          this.setState({ page: deepmerge(page, params) });
         }}
         getPath={getPath}
       />
