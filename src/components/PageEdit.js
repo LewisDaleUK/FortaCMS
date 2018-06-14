@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import EditorContainer from '../containers/EditorContainer';
 import HideableDiv from './HideableDiv';
-import '../css/Button.css';
+import Button from './Button';
 
 const PageEdit = ({ page, onSubmit, onPageUpdate, onMetaUpdate, getPath }) => {
   const meta = (page.meta || {});
@@ -27,9 +27,9 @@ const PageEdit = ({ page, onSubmit, onPageUpdate, onMetaUpdate, getPath }) => {
             onChange={e => onPageUpdate('path', e.target.value)} />
         </div>
         <div className="options">
-          <div className="button" onClick={onSubmit}>
+          <Button onClick={onSubmit}>
             Submit
-          </div>
+          </Button>
           <div className="dropdown">
             <span className="oi" data-glyph="chevron-bottom" title="options"></span>
           </div>

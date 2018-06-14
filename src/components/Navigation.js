@@ -36,7 +36,7 @@ const Navigation = ({ items, addRow, updateRow, deleteRow, reorder }) => {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                       >
-                        <span className="oi" data-glyph="move" title="Reorder" {...provided.dragHandleProps}></span>
+                        <span className="oi" data-glyph="resize-height" title="Reorder" {...provided.dragHandleProps}></span>
 
                       <NavigationItem
                         key={`navigation-${n.id}`}

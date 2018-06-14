@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 import PageItem from './PageItem';
+import Button from './Button';
 
 const PageList = ({ pages, baseURL, keyPrefix }) => (
   <div className="pagelist">
@@ -16,11 +16,9 @@ const PageList = ({ pages, baseURL, keyPrefix }) => (
       />
     ))
     }
-    <div className="button">
-      <NavLink to={`${baseURL}create`}>
-        Add New
-      </NavLink>
-    </div>
+    <Button to={`${baseURL}create`}>
+      Add New
+    </Button>
   </div>
 );
 
