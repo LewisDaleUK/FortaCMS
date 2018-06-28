@@ -31,13 +31,7 @@ textarea {
 
 .pageform .options {
   display: flex;
-}
-
-.pageform div.button {
-  padding: 0 25px;
-  display: flex;
-  align-items: center;
-  height: 100%;
+  padding-left: 10px;
 }
 
 .pageform .options .dropdown {

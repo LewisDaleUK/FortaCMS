@@ -16,7 +16,7 @@ const Sidebar = ({ visible, onVisibleChange }) => (
       <SidebarItem icon="compass" title="navigation" url="/navigation">Navigation</SidebarItem>
       <SidebarItem icon="pencil" title="blog" url="/blog">Blog</SidebarItem>
       <SidebarItem icon="graph" title="stats" url="/stats">Stats</SidebarItem>
-      <SidebarItem icon="people" title="users" url="/users">Users</SidebarItem>
+      <SidebarItem icon="people" title="users" url="/user">Users</SidebarItem>
       <SidebarItem icon="wrench" title="settings" url="/settings">Settings</SidebarItem>
 
       <div className="hide" onClick={onVisibleChange}>

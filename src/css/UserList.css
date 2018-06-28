@@ -1,0 +1,37 @@
+.userlist {
+  width: 100%;
+  margin-top: 20px;
+  height: auto;
+}
+
+.userlist .item {
+  width: 100%;
+  height: 5vh;
+  border-bottom: 1px solid #232323;
+  display: flex;
+  align-items: center;
+}
+
+.userlist .item > span {
+  width: 20%;
+}
+
+.userlist .item a {
+  color: #232323;
+}
+
+.userlist .item > .actions {
+  flex: 1;
+  text-align: right;
+}
+
+.actions span {
+  display: inline-block;
+  width: 35px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.userlist > .button {
+  margin-top: 20px;
+}

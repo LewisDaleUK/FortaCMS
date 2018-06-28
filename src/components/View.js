@@ -5,6 +5,7 @@ import Pages from './Pages';
 import Navigation from './Navigation';
 import Blog from './Blog';
 import Stats from './Stats';
+import UserView from './UserView';
 import '../css/View.css';
 
 const View = () => (
@@ -14,7 +15,7 @@ const View = () => (
     <Route path="/navigation" component={Navigation} />
     <Route path="/blog" component={Blog} />
     <Route path="/stats" component={Stats} />
-    <Route path="/users" component={() => (<h1>Users</h1>)} />
+    <Route path="/user" component={UserView} />
     <Route path="/settings" component={() => (<h1>Settings</h1>)} />
   </div>
 );

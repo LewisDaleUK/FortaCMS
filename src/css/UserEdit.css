@@ -1,0 +1,26 @@
+.useredit .grid {
+  margin-top: 40px;
+  color: #232323;
+}
+
+.useredit .column:first-of-type:not(:only-child) {
+  margin-right: 10px;
+}
+
+.useredit label {
+  font-family: 'Montserrat', 'Open Sans', sans-serif;
+  font-size: 1.4rem;
+}
+
+.useredit input {
+  width: 100%;
+  height: 5vh;
+  font-size: 1.2rem;
+  font-family: 'Montserrat', 'Open Sans', sans-serif;
+  padding: 0 5px;
+  margin-top: 5px;
+}
+
+.useredit .row {
+  margin-bottom: 15px;
+}

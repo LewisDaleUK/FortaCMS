@@ -18,10 +18,7 @@ const navigation = (state = navigationItems, action) => {
       newState[index] = action.navigation;
       return newState;
     case DELETE:
-      index = state.findIndex(x => x.id === action.navigation.id);
-      newState = [...state];
-      newState.splice(index, 1);;
-      return newState;
+      return [...state.filter(x => x.id !== action.navigation.id)];
     case REORDER:
       newState = state.slice();
       const { from, to } = action;
