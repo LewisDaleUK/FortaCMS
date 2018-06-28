@@ -11,10 +11,16 @@ class UserEditContainer extends Component {
     user: null
   };
 
+  constructor(props) {
+    super(props);
+
+    this.onValueChange = this.onValueChange.bind(this);
+  }
+
   componentDidMount() {
     const { match, users } = this.props;
     const id = parseInt(match.params.id, 10);
-    const user = users.find(u => u.id === id);
+    const user = (users.find(u => u.id === id) || this.getBlankUser());
 
     this.setState({
       loading: false,
@@ -30,17 +36,27 @@ class UserEditContainer extends Component {
 
   createOnSubmit(action) {
     return user => {
+      console.log(user);
       action(user);
       this.props.history.push('/user');
     };
   }
 
-  render() {
-    const { add, update } = this.props;
-    const onSubmit = this.createOnSubmit(this.state.user ? update : add);
-    const user = (this.state.user || this.getBlankUser());
+  onValueChange(evt) {
+    const name = evt.target.name;
+    const value = evt.target.value;
+    console.log(name, value);
+    const user = Object.assign({}, this.state.user, { [name]: value });
+    console.log(user);
 
-    return this.state.loading ? <Loader /> : <UserEdit user={user} onSubmit={onSubmit} />;
+    this.setState({ user });
+  }
+
+  render() {
+    const { add, update, match } = this.props;
+    const onSubmit = this.createOnSubmit(match.params.id ? update : add);
+
+    return this.state.loading ? <Loader /> : <UserEdit user={this.state.user} onSubmit={() => onSubmit(this.state.user)} onValueChange={this.onValueChange} />;
   }
 }
 

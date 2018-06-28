@@ -4,7 +4,7 @@ import { Grid, Row, Column } from './GridLayout';
 import Button from './Button';
 import '../css/UserEdit.css';
 
-const UserEdit = ({ user, onSubmit, history }) => (
+const UserEdit = ({ user, onSubmit, history, onValueChange }) => (
   <form className="useredit">
     <h1>User Edit</h1>
 
@@ -12,23 +12,23 @@ const UserEdit = ({ user, onSubmit, history }) => (
       <Row>
         <Column>
           <label htmlFor="firstname">First Name</label>
-          <input type="text" id="firstname" name="firstname" defaultValue={user.firstname} />
+          <input type="text" id="firstname" name="firstname" defaultValue={user.firstname} onChange={onValueChange} />
         </Column>
         <Column>
           <label htmlFor="lastname">Last Name</label>
-          <input type="text" id="lastname" name="lastname" defaultValue={user.lastname} />
+          <input type="text" id="lastname" name="lastname" defaultValue={user.lastname} onChange={onValueChange} />
         </Column>
       </Row>
       <Row>
         <Column>
           <label htmlFor="email">Email Address</label>
-          <input type="text" id="email" name="email" defaultValue={user.email} />
+          <input type="text" id="email" name="email" defaultValue={user.email} onChange={onValueChange} />
         </Column>
       </Row>
       <Row>
         <Column>
           <label htmlFor="password">Change Password</label>
-          <input type="password" id="password" name="password" />
+          <input type="password" id="password" name="password" onChange={onValueChange} />
         </Column>
       </Row>
       <Row>

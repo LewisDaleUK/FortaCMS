@@ -7,6 +7,7 @@ const users = (state=defaultUsers, action) => {
 
   switch(action.type) {
     case ADD:
+      console.log(action.user);
       return [...state, action.user];
     case UPDATE:
       const user = action.user;
